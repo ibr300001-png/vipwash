@@ -1,0 +1,8 @@
+data/
+__pycache__/
+*.pyc
+client_site/*.db
+accountant_site/*.db
+data/
+__pycache__/
+*.pyc

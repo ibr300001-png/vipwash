@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>VIP Wash — تسجيل الدخول</title>
+  <link rel="icon" href="assets/logo.png">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="logo"><img src="assets/logo.png" alt=""><h1>VIP Wash</h1></div>
+    <div class="card">
+      <h2 id="title">تسجيل الدخول</h2>
+      <form id="loginForm" class="stack" autocomplete="on">
+        <label id="lblUser">اسم المستخدم</label>
+        <input id="email" class="input" autocomplete="username" required>
+        <label id="lblPass">كلمة المرور</label>
+        <input id="password" class="input" type="password" autocomplete="current-password" required>
+        <label id="lblRole">الدور</label>
+        <select id="role" class="input"><option value="ADMIN">ADMIN</option><option value="ACCOUNTANT">ACCOUNTANT</option></select>
+        <button class="btn" type="submit" id="btnLoginTxt">تسجيل الدخول</button>
+      </form>
+      <div id="err" class="notice" style="display:none;margin-top:8px"></div>
+      <div class="meta" id="meta">سيتم توجيهك تلقائيًا بعد تسجيل الدخول.</div>
+    </div>
+    <div class="footer-note">اعداد ابراهيم الناشري</div>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>

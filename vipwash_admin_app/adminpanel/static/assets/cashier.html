@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>VIP Wash — المحاسب</title>
+  <link rel="icon" href="logo.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="topbar">
+    <div class="row">
+      <span class="badge">ACCOUNTANT</span>
+      <div class="row">
+        <button id="btnLang" class="badge sm">EN</button>
+        <button id="btnTheme" class="badge sm">☀️/🌙</button>
+        <a class="badge sm" href="/admin">خروج</a>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="logo"><img src="logo.png"><h1>VIP Wash</h1></div>
+
+    <div class="section card">
+      <div class="title"><h2>قراءة باركود</h2></div>
+      <div class="stack">
+        <video id="video" playsinline></video>
+        <div class="row">
+          <button id="btnScan" class="btn">ابدأ المسح</button>
+          <button id="btnStop" class="btn ghost">إيقاف</button>
+        </div>
+        <div class="row">
+          <input id="manualToken" class="input" placeholder="إدخال يدوي (TOKEN)">
+          <button id="btnManual" class="btn secondary">اعتماد</button>
+        </div>
+        <div id="scanOut" class="notice" style="display:none"></div>
+      </div>
+    </div>
+
+    <div class="footer-note">اعداد ابراهيم الناشري</div>
+  </div>
+  <script src="cashier.js"></script>
+</body>
+</html>
