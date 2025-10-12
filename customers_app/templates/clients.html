@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <title>قائمة العملاء - VIP</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body class="page-clients">
+  <div class="card">
+    <h2 class="card-title">قائمة العملاء</h2>
+    <table class="client-table">
+      <thead>
+        <tr>
+          <th>الاسم</th>
+          <th>الجوال</th>
+          <th>السيارة</th>
+          <th>النقاط</th>
+          <th>عدد الغسلات</th>
+          <th>تقييم</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for c in clients %}
+        <tr>
+          <td>{{ c['name'] or '-' }}</td>
+          <td>{{ c['phone'] }}</td>
+          <td>{{ (c['plate_letters'] or '') ~ '-' ~ (c['plate_numbers'] or '') }}</td>
+          <td>{{ c['points'] }}</td>
+          <td>{{ c['washes'] }}</td>
+          <td>{% if c['last_rating'] %}{% for i in range(c['last_rating']) %}★{% endfor %}{% else %}-{% endif %}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>
