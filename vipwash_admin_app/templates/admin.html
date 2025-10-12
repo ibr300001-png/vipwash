@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="grid">
+  <section class="card">
+    <h3 class="card-title">{{ tr('scanner') }}</h3>
+    <div class="scanner-card">
+      <div id="qr-viewfinder"></div>
+      <div class="scanner-actions">
+        <button id="btnStart" class="btn btn-gold">{{ tr('start') }}</button>
+        <button id="btnStop" class="btn btn-gray">{{ tr('stop') }}</button>
+        <button id="btnApprove" class="btn btn-green" disabled>{{ tr('approve') }}</button>
+        <input id="tokenRO" class="input" placeholder="{{ tr('token_label') }}" readonly>
+      </div>
+      <small class="muted">{{ tr('may_need_cam') }}</small>
+    </div>
+  </section>
+
+  <section class="card kpi">
+    <div class="kpi-title">{{ tr('avg_rating') }}</div>
+    <div class="kpi-value">{{ avg_rating }}</div>
+  </section>
+
+  <section class="card kpi">
+    <div class="kpi-title">{{ tr('total_visits') }}</div>
+    <div class="kpi-value">{{ total_visits }}</div>
+  </section>
+
+  <section class="card">
+    <h3 class="card-title">{{ tr('stats') }}</h3>
+
+    <div class="table">
+      <div class="thead">
+        <div>{{ tr('accountant') }}</div><div>{{ tr('count') }}</div>
+      </div>
+      {% if per_acc %}
+        {% for r in per_acc %}
+        <div class="trow"><div>{{ r['accountant'] }}</div><div>{{ r['cnt'] }}</div></div>
+        {% endfor %}
+      {% else %}
+        <div class="muted" style="padding:8px">{{ tr('no_data') }}</div>
+      {% endif %}
+    </div>
+
+    <div class="ratings">
+      {% for i in [5,4,3,2,1] %}
+      <div class="rate-row">
+        <span>{{ i }}★</span>
+        <div class="bar"><span style="width: {{ (dist[i] or 0) * 6 }}px"></span></div>
+        <span>{{ dist[i] or 0 }}</span>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+</div>
+{% endblock %}
+
+{% block modals %}
+<div id="clientModal" class="modal">
+  <div class="modal-card">
+    <h3 class="card-title">{{ tr('winner') }}</h3>
+    <div id="clientInfo" class="muted"></div>
+    <div class="modal-actions">
+      <button id="mRedeem" class="btn btn-gray" disabled>استبدال</button>
+      <button id="mApprove" class="btn btn-green">{{ tr('approve') }}</button>
+      <button class="btn btn-dark" onclick="closeModal('#clientModal')">إغلاق</button>
+    </div>
+  </div>
+</div>
+
+<div id="settingsModal" class="modal">
+  <div class="modal-card">
+    <h3 class="card-title">{{ tr('settings') }}</h3>
+
+    <div class="tabs">
+      <button class="tab active" data-tab="t-users">{{ tr('users') }}</button>
+      <button class="tab" data-tab="t-points">{{ tr('points_per_visit') }} / {{ tr('redeem_limit') }}</button>
+      <button class="tab" data-tab="t-texts">{{ tr('front_text') }}</button>
+    </div>
+
+    <div class="tab-pane" id="t-users" style="display:block">
+      <div class="user-form">
+        <input id="u_id" type="hidden">
+        <input id="u_name" class="input" placeholder="{{ tr('username') }}">
+        <input id="u_pass" class="input" placeholder="{{ tr('password') }}">
+        <select id="u_role" class="input">
+          <option value="admin">{{ tr('admin') }}</option>
+          <option value="acc">{{ tr('acc') }}</option>
+        </select>
+        <button id="u_save" class="btn btn-gold">{{ tr('save') }}</button>
+      </div>
+      <div id="u_list" class="table" style="margin-top:8px"></div>
+    </div>
+
+    <div class="tab-pane" id="t-points">
+      <input id="s_ppv" class="input" type="number" min="1" value="{{ st['points_per_visit'] }}">
+      <input id="s_lim" class="input" type="number" min="1" value="{{ st['redeem_limit'] }}">
+      <button id="s_save" class="btn btn-gold">{{ tr('save') }}</button>
+    </div>
+
+    <div class="tab-pane" id="t-texts">
+      <input id="s_ftxt" class="input" value="{{ st['front_text'] }}">
+      <input id="s_flnk" class="input" value="{{ st['front_link'] }}">
+      <input id="s_draw" class="input" value="{{ st['draw_text'] }}">
+      <button id="t_save" class="btn btn-gold">{{ tr('save') }}</button>
+    </div>
+
+    <div class="modal-actions">
+      <button class="btn btn-dark" onclick="closeModal('#settingsModal')">إغلاق</button>
+    </div>
+  </div>
+</div>
+<script>
+  document.getElementById('btnSettings')?.addEventListener('click', e => { e.preventDefault(); openModal('#settingsModal'); loadUsers(); });
+</script>
+{% endblock %}

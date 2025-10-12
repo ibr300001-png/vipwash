@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: vipwash-two-sites
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn -w 2 -b 0.0.0.0:$PORT wsgi:application
+    envVars:
+      - key: FLASK_ENV
+        value: production
+      - key: DB_DIR
+        value: /opt/render/project/src/data
+    disk:
+      name: vipwash-data
+      mountPath: /opt/render/project/src/data
+      sizeGB: 1

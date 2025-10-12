@@ -1,0 +1,52 @@
+{% set user = user or session.get('user') %}
+<!doctype html>
+<html lang="{{ 'ar' if session.get('lang','ar')=='ar' else 'en' }}" dir="{{ 'rtl' if session.get('lang','ar')=='ar' else 'ltr' }}">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>vipwash</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='app.css') }}">
+</head>
+<body class="{{ session.get('theme','dark') }}">
+  <header class="topbar">
+    <div class="left">
+      {% if user and user.role=='admin' %}
+        <a class="chip" href="#" id="btnSettings" title="{{ tr('settings') }}">⚙️</a>
+        <a class="chip" href="{{ url_for('export_pdf') }}" title="{{ tr('export_pdf') }}">📄 PDF</a>
+      {% endif %}
+    </div>
+    <div class="right">
+      <a class="chip" href="{{ url_for('set_lang', code='ar') }}">AR</a>
+      <a class="chip" href="{{ url_for('set_lang', code='en') }}">EN</a>
+      <a class="chip" href="{{ url_for('set_theme', mode='light') }}">☀️</a>
+      <a class="chip" href="{{ url_for('set_theme', mode='dark') }}">🌙</a>
+      {% if user %}
+        <a class="chip danger" href="{{ url_for('logout') }}">{{ tr('logout') }}</a>
+      {% endif %}
+    </div>
+    <div class="brand">vipwash</div>
+  </header>
+
+  <main class="container">
+    {% with msgs = get_flashed_messages(with_categories=true) %}
+      {% if msgs %}
+        <div class="flash">
+          {% for cat, m in msgs %}<div class="msg {{ cat }}">{{ m }}</div>{% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="footer">vipwash © 2025</footer>
+
+  <script>
+    function openModal(id){ document.querySelector(id).classList.add('show'); document.body.style.overflow='hidden'; }
+    function closeModal(id){ document.querySelector(id).classList.remove('show'); document.body.style.overflow=''; }
+  </script>
+  <script src="https://unpkg.com/html5-qrcode" defer></script>
+  <script src="{{ url_for('static', filename='app.js') }}" defer></script>
+
+  {% block modals %}{% endblock %}
+</body>
+</html>

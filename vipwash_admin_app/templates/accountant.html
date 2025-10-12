@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="card">
+  <h3 class="card-title">{{ tr('scanner') }}</h3>
+  <div class="scanner-card">
+    <div id="qr-viewfinder"></div>
+    <div class="scanner-actions">
+      <button id="btnStart" class="btn btn-gold">{{ tr('start') }}</button>
+      <button id="btnStop" class="btn btn-gray">{{ tr('stop') }}</button>
+      <button id="btnApprove" class="btn btn-green" disabled>{{ tr('approve') }}</button>
+      <input id="tokenRO" class="input" placeholder="{{ tr('token_label') }}" readonly>
+    </div>
+    <small class="muted">{{ tr('may_need_cam') }}</small>
+  </div>
+</section>
+{% endblock %}
+
+{% block modals %}
+<div id="clientModal" class="modal">
+  <div class="modal-card">
+    <h3 class="card-title">{{ tr('winner') }}</h3>
+    <div id="clientInfo" class="muted"></div>
+    <div class="modal-actions">
+      <button id="mRedeem" class="btn btn-gray" disabled>استبدال</button>
+      <button id="mApprove" class="btn btn-green">{{ tr('approve') }}</button>
+      <button class="btn btn-dark" onclick="closeModal('#clientModal')">إغلاق</button>
+    </div>
+  </div>
+</div>
+{% endblock %}

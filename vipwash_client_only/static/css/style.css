@@ -1,0 +1,169 @@
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;600;700&display=swap');
+
+:root{
+  --gold:#f9d65d;
+  --gold-strong:#d4af37;
+  --bg1:#0b0b0b;
+}
+
+*{box-sizing:border-box}
+body{ 
+  margin:0; 
+  font-family:'Tajawal',sans-serif; 
+  background:linear-gradient(180deg,var(--bg1), #121212); 
+  color:var(--gold); 
+  direction:rtl; 
+  height:100vh;
+}
+
+/* جعل الكارد بالمنتصف وزيادة الطول */
+.hero, .card { 
+  width:94%; 
+  max-width:480px; 
+  min-height:550px; /* زيادة الطول */
+  position:absolute; 
+  top:50%; 
+  left:50%; 
+  transform:translate(-50%,-50%);
+  background: rgba(255,255,255,0.02); 
+  padding:32px; 
+  border-radius:20px; 
+  box-shadow:0 10px 30px rgba(0,0,0,0.6); 
+  border:1px solid rgba(212,175,55,0.08); 
+}
+
+.logo{ display:block; width:180px; margin:10px auto 16px; }
+
+.title{ 
+  font-size:32px; 
+  text-align:center; 
+  margin:10px 0 12px; 
+  color:var(--gold-strong); 
+  font-weight:700; 
+}
+
+.subtitle{ 
+  color:#ddd; 
+  text-align:center;   /* النص بالوسط */
+  margin:20px auto 0;  /* مسافة من فوق وتوسيط */
+  font-size:17px; 
+  display:block;
+}
+
+.btn{ 
+  display:inline-block; 
+  text-decoration:none; 
+  text-align:center; 
+  padding:14px 34px; 
+  border-radius:30px; 
+  background: linear-gradient(180deg,#e0bf45,#c89e25); 
+  color:#111!important; 
+  font-weight:700; 
+  box-shadow:0 6px 0 rgba(0,0,0,0.35); 
+  transition: transform .12s ease; 
+  font-size:17px; 
+}
+.btn:hover{ transform: translateY(-3px); }
+
+/* زر عميل جديد بلون ذهبي مختلف */
+.btn.secondary{
+  background: linear-gradient(180deg,#caa92f,#a17d18);
+  color:#111!important;
+}
+.btn.secondary:hover{
+  background: linear-gradient(180deg,#d6b63f,#b68c1f);
+}
+
+.cta{ display:flex; flex-direction:column; gap:18px; align-items:center; margin-top:22px; }
+
+.card-title{ text-align:right; font-size:22px; color:var(--gold); margin-bottom:14px; font-weight:700; }
+input[type="text"], input[type="tel"], textarea{ 
+  width:100%; 
+  padding:12px 14px; 
+  border-radius:12px; 
+  border:2px solid rgba(212,175,55,0.7); 
+  background:#121212; 
+  color:var(--gold); 
+  font-size:16px; 
+  outline:none; 
+  margin-bottom:14px; /* مسافة بين الحقول */
+}
+textarea{ resize:none; min-height:80px; }
+
+.plate{ display:flex; gap:10px; align-items:center; }
+.plate input{ width:50%; text-align:center; }
+.dash{ color:var(--gold); font-weight:700; font-size:22px; }
+
+.rating{ 
+  display:flex; 
+  gap:6px; 
+  justify-content:flex-start; 
+  direction:rtl; 
+  unicode-bidi:bidi-override; 
+  margin-bottom:14px; 
+}
+.rating input{ display:none; }
+.rating label{ font-size:30px; color:#555; cursor:pointer; transition: color .12s ease; }
+.rating input:checked ~ label, .rating label:hover, .rating label:hover ~ label { color: var(--gold); }
+
+.btn.submit{ 
+  display:block; 
+  width:82%; 
+  margin:22px auto 8px; 
+  padding:15px; 
+  border-radius:42px; 
+  font-size:19px; 
+}
+
+.modal{ 
+  position:fixed; 
+  inset:0; 
+  display:flex; 
+  align-items:center; 
+  justify-content:center; 
+  background: rgba(0,0,0,0.6); 
+  z-index:9999; 
+}
+.modal.hidden{ display:none; }
+.modal-box{ 
+  background:#111; 
+  padding:24px; 
+  border-radius:16px; 
+  width:90%; 
+  max-width:380px; 
+  color:var(--gold); 
+  text-align:center; 
+  box-shadow:0 12px 30px rgba(0,0,0,0.6); 
+}
+.modal-box .qr{ 
+  width:180px; 
+  height:180px; 
+  object-fit:contain; 
+  margin:14px auto; 
+  display:block; 
+}
+
+.client-table{ 
+  width:100%; 
+  border-collapse: collapse; 
+  color:#fff; 
+  margin-top:10px; 
+}
+.client-table th{ 
+  background:#1e1e1e; 
+  text-align:right; 
+  padding:12px; 
+  font-weight:600; 
+  color:var(--gold); 
+}
+.client-table td{ 
+  padding:12px; 
+  border-bottom:1px solid #222; 
+  text-align:right; 
+  color:#ddd; 
+}
+
+@media (max-width:420px){ 
+  .title{ font-size:26px; } 
+  .logo{ width:150px; } 
+}
