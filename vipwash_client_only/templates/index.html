@@ -5,17 +5,17 @@
   <title>غسيل وتلميع VIP</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/static/css/style.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body class="page-index">
   <div class="hero">
-    <img src="/static/img/logo.png" alt="Logo" class="logo">
+    <img src="{{ url_for('static', filename='img/logo.png') }}?v=latest" alt="Logo" style="width:340px;height:auto;display:block;margin:0 auto 20px;" width="340">
     <h1 class="title">أهلاً بك في غسيل وتلميع <span class="vip">VIP</span></h1>
     <p class="subtitle">اختر نوع العميل وابدأ رحلتك معنا</p>
 
     <div class="cta">
-      <a href="/loyal" class="btn big">عميل وفي</a>
-      <a href="/new" class="btn big outline">عميل جديد</a>
+      <a href="{{ request.script_root }}/loyal" class="btn big">عميل وفي</a>
+      <a href="{{ request.script_root }}/new" class="btn big outline">عميل جديد</a>
     </div>
     <p class="small">اختر خيارك وأستمتع بخدماتنا المتميزة.</p>
     {% if footer_text %}

@@ -5,7 +5,7 @@
   <title>عميل جديد - VIP</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/static/css/style.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body class="page-form">
   <div class="card">
@@ -41,7 +41,7 @@
     <div class="modal-box">
       <h3 id="modalTitle">🎉 تم تسجيلك بنجاح</h3>
       <p id="modalMsg">مبروك! حصلت على 10 نقاط — رصيدك الآن يظهر أدناه.</p>
-      <img id="modalQR" src="" alt="QR" class="qr">
+      <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo">
       <p id="modalPoints"></p>
       <div class="modal-actions">
         <button id="modalClose" class="btn">إغلاق</button>
@@ -49,6 +49,6 @@
     </div>
   </div>
 
-  <script src="/static/js/main.js"></script>
+  <script src="{{ url_for('static', filename='css/style.css') }}"></script>
 </body>
 </html>
